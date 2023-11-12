@@ -4,9 +4,15 @@ namespace PersonalProjectPCCapstone2023.Controllers
 {
     public class CustomerController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Merchandise()
         {
             return View();
         }
+
+        public IActionResult Account()
+        {
+            return View();
+        }
+
     }
 }

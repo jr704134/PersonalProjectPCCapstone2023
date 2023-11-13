@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PersonalProjectPCCapstone2023.Models;
 
 namespace PersonalProjectPCCapstone2023.Data
 {
@@ -10,5 +11,7 @@ namespace PersonalProjectPCCapstone2023.Data
             : base(options)
         {
         }
+
+        public DbSet<Merchandise> Merch { get; set; }
     }
 }

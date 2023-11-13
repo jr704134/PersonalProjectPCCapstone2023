@@ -22,6 +22,21 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("CategoryMerchandise", b =>
+                {
+                    b.Property<int>("CategoriesCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MerchId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CategoriesCategoryId", "MerchId");
+
+                    b.HasIndex("MerchId");
+
+                    b.ToTable("CategoryMerchandise");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -86,6 +101,10 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -137,6 +156,8 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -224,6 +245,100 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CategoryType")
+                        .HasColumnType("int");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.Merchandise", b =>
+                {
+                    b.Property<int>("MerchId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MerchId"), 1L, 1);
+
+                    b.Property<string>("MerchName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("MerchPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("MerchSize")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("MerchId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Merch");
+                });
+
+            modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.Order", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MerchandiseMerchId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderStatus")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("MerchandiseMerchId");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.User", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.HasDiscriminator().HasValue("User");
+                });
+
+            modelBuilder.Entity("CategoryMerchandise", b =>
+                {
+                    b.HasOne("PersonalProjectPCCapstone2023.Models.Category", null)
+                        .WithMany()
+                        .HasForeignKey("CategoriesCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PersonalProjectPCCapstone2023.Models.Merchandise", null)
+                        .WithMany()
+                        .HasForeignKey("MerchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -273,6 +388,27 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.Merchandise", b =>
+                {
+                    b.HasOne("PersonalProjectPCCapstone2023.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.Order", b =>
+                {
+                    b.HasOne("PersonalProjectPCCapstone2023.Models.Merchandise", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("MerchandiseMerchId");
+                });
+
+            modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.Merchandise", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

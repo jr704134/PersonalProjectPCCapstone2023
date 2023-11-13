@@ -7,7 +7,7 @@ namespace PersonalProjectPCCapstone2023.Models
     {
         [NotMapped]
         public IList<string>? RoleNames { get; set; }
-        
+
 
     }
 }

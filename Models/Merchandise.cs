@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace PersonalProjectPCCapstone2023.Models
@@ -12,14 +13,20 @@ namespace PersonalProjectPCCapstone2023.Models
         [Required(ErrorMessage = "Merch Name is required.")]
         public string MerchName { get; set;}
 
-        [Required(ErrorMessage = "Merch Type is required.")]
-        public string MerchType { get; set; }
-
         [Required(ErrorMessage = "Merch Size is required.")]
         public string MerchSize { get; set; }
 
         [Required(ErrorMessage = "Merch Price is required.")]
         public Decimal MerchPrice { get; set; } = 0.0m;
+
+        [Required(ErrorMessage = "Merch Category is required.")]
+        public IList<Category>? Categories { get; set; } = new List<Category>();
+
+        public IList<Order>? Orders { get; set; } = new List<Order>();
+
+        public string? UserId { get; set; }
+
+        public User? User { get; set; }
 
     }
 }

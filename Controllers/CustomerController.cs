@@ -14,5 +14,10 @@ namespace PersonalProjectPCCapstone2023.Controllers
             return View();
         }
 
+
+        public IActionResult ViewItem()
+        {
+            return View();
+        }
     }
 }

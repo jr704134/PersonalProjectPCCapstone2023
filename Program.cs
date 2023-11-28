@@ -84,6 +84,27 @@ namespace PersonalProjectPCCapstone2023
                 
             }
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+                string email = "customer@customer.com";
+                string password = "Thepassword1!";
+
+                if (await userManager.FindByEmailAsync(email) == null)
+                {
+                    var user = new IdentityUser();
+                    user.UserName = email;
+                    user.Email = email;
+
+                    await userManager.CreateAsync(user, password);
+
+                    await userManager.AddToRoleAsync(user, "Customer");
+
+                }
+
+            }
+
 
 
 

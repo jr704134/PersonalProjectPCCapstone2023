@@ -70,7 +70,7 @@ namespace PersonalProjectPCCapstone2023
                 string email = "admin@admin.com";
                 string password = "Wordpass01!";
 
-                if(await userManager.FindByEmailAsync(email) == null)
+                if (await userManager.FindByEmailAsync(email) == null)
                 {
                     var user = new IdentityUser();
                     user.UserName = email;

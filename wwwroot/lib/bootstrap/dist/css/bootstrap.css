@@ -232,8 +232,9 @@ a {
   color: #0d6efd;
   text-decoration: underline;
 }
+
 a:hover {
-  color: #0a58ca;
+  color: black;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -3880,6 +3881,11 @@ textarea.form-control-lg {
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
+
+.nav-link:hover {
+    color: black;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nav-link {
     transition: none;

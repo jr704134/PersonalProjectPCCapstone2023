@@ -62,12 +62,10 @@ img {
         #menu li a:link, #menu li a:visited {
             color: #FFF;
             display: block;
-            background: url(menu.gif);
             padding: 8px 0 0 10px;
         }
 
         #menu li a:hover {
             color: #FFF;
-            background: url(menu.gif) 0 -32px;
             padding: 8px 0 0 10px;
         }*/

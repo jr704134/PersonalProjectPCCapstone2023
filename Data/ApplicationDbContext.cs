@@ -31,6 +31,15 @@ namespace PersonalProjectPCCapstone2023.Data
                 .HasMany(e => e.Categories)
                 .WithMany(e => e.Merch)
                 .UsingEntity<MerchCategory>();
+            modelBuilder.Entity<Merchandise>().HasData(
+                new Merchandise
+                {
+                    MerchId = 1,
+                    MerchName = "Test",
+                    MerchPrice = 25.0m,
+                    MerchSize = "Medium"
+                }
+                );
 
         }
     }

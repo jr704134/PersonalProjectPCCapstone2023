@@ -2,6 +2,6 @@
 {
     public enum OrderStatus
     {
-        NOT_SUBMITTED, SUBMITTED, OUT_FOR_DELIVERY, DELIVERED
+        Processed, Out_For_Delivery, Delivered
     }
 }

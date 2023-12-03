@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Win32;
 using PersonalProjectPCCapstone2023.Models;
 using System.Diagnostics;
 
@@ -19,6 +20,11 @@ namespace PersonalProjectPCCapstone2023.Controllers
         }
 
         public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
         {
             return View();
         }

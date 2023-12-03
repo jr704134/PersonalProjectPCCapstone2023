@@ -1,9 +1,15 @@
-﻿@{
+﻿@model List<Merchandise>
+@{
     ViewData["Title"] = "Apparel";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Apparel</h1>
+@* I used this to help me make a three column foreach loop
+https://stackoverflow.com/questions/55673123/how-we-can-divide-row-in-3-columns-in-foreach-loop
+*@
 
-    <a asp-controller="Customer" asp-action="ViewItem" class="btn btn-primary">View</a>
+<div class="text-center">
+    <h1>Apparel</h1>
+
+
+    <a asp-controller="Customer" asp-action="ViewItem" class="btn btn-primary" asp-route-id="">View</a>
 </div>

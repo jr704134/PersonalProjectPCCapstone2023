@@ -21,14 +21,22 @@ li a:hover {
     color: black;
 }
 
-/*h1 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    font-weight: bold;
+h1 {
+    font-family: Lato;
+    font-size: 60px;
+    font-weight: 500;
     margin: 0;
     padding: 0;
 }
 
+h2 {
+    font-family: Lato;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+}
+
+/*
 hr {
     border: none;
     border-top: 1px solid #CCCCCC;

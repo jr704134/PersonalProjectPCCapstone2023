@@ -49,6 +49,9 @@ namespace PersonalProjectPCCapstone2023
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
+            //I used this video to help me set up roles:
+            //https://youtu.be/Y6DCP-yH-9Q?si=nobBbhJ1Q6nyn2Z3
+
             using (var scope = app.Services.CreateScope())
             {
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();

@@ -13,7 +13,6 @@ namespace PersonalProjectPCCapstone2023.Models
         [Required(ErrorMessage = "Merch Name is required.")]
         public string MerchName { get; set;}
 
-        [Required(ErrorMessage = "Merch Size is required.")]
         public string MerchSize { get; set; }
 
         [Required(ErrorMessage = "Merch Price is required.")]

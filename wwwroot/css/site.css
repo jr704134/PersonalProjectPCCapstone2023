@@ -17,10 +17,6 @@ body {
     margin-bottom: 60px;
 }
 
-li a:hover {
-    color: black;
-}
-
 h1 {
     font-family: Lato;
     font-size: 60px;
@@ -34,6 +30,16 @@ h2 {
     font-weight: 500;
     margin: 0;
     padding: 0;
+}
+
+.footer {
+    color: #fff;
+    text-decoration: none;
+    background-color: #000;
+}
+
+.footer:hover {
+    color: darkgray;
 }
 
 /*

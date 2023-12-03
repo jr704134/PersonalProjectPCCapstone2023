@@ -1,7 +1,16 @@
-﻿namespace PersonalProjectPCCapstone2023.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PersonalProjectPCCapstone2023.Models
 {
     public class Payment
     {
-        public int PaymentId { get; set; }
+        [Key]
+        public int PaymentId { get; set; } //Primary Key
+
+        public int PaymentNum { get; set; }
+
+        public string PaymentType { get; set; }
+
+        public string ExpDate { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PersonalProjectPCCapstone2023.Data.Migrations;
 using PersonalProjectPCCapstone2023.Models;
 
 namespace PersonalProjectPCCapstone2023.Data
@@ -36,11 +37,21 @@ namespace PersonalProjectPCCapstone2023.Data
                 {
                     MerchId = 1,
                     MerchName = "Test",
-                    MerchPrice = 25.0m,
-                    MerchSize = "Medium"
+                    MerchPrice = 25.0m
+                },
+                new Merchandise
+                {
+                    MerchId = 2,
+                    MerchName = "Test1",
+                    MerchPrice = 50.0m
+                },
+                new Merchandise
+                {
+                    MerchId = 3,
+                    MerchName = "Test2",
+                    MerchPrice = 35.0m
                 }
                 );
-
         }
     }
 }

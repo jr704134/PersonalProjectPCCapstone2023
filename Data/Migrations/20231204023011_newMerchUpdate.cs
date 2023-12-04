@@ -4,7 +4,7 @@
 
 namespace PersonalProjectPCCapstone2023.Data.Migrations
 {
-    public partial class Merch : Migration
+    public partial class newMerchUpdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,7 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                 defaultValue: "");
 
             migrationBuilder.CreateTable(
-                name: "Category",
+                name: "Categories",
                 columns: table => new
                 {
                     CategoryId = table.Column<int>(type: "int", nullable: false)
@@ -26,7 +26,7 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Category", x => x.CategoryId);
+                    table.PrimaryKey("PK_Categories", x => x.CategoryId);
                 });
 
             migrationBuilder.CreateTable(
@@ -36,7 +36,7 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                     MerchId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MerchName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MerchSize = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MerchSize = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MerchPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
@@ -51,23 +51,37 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CategoryMerchandise",
+                name: "Payments",
                 columns: table => new
                 {
-                    CategoriesCategoryId = table.Column<int>(type: "int", nullable: false),
-                    MerchId = table.Column<int>(type: "int", nullable: false)
+                    PaymentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PaymentNum = table.Column<int>(type: "int", nullable: false),
+                    PaymentType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExpDate = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryMerchandise", x => new { x.CategoriesCategoryId, x.MerchId });
+                    table.PrimaryKey("PK_Payments", x => x.PaymentId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MerchCategories",
+                columns: table => new
+                {
+                    MerchId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
                     table.ForeignKey(
-                        name: "FK_CategoryMerchandise_Category_CategoriesCategoryId",
-                        column: x => x.CategoriesCategoryId,
-                        principalTable: "Category",
+                        name: "FK_MerchCategories_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
                         principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CategoryMerchandise_Merch_MerchId",
+                        name: "FK_MerchCategories_Merch_MerchId",
                         column: x => x.MerchId,
                         principalTable: "Merch",
                         principalColumn: "MerchId",
@@ -75,7 +89,7 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Order",
+                name: "Orders",
                 columns: table => new
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false)
@@ -86,18 +100,13 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Order", x => x.OrderId);
+                    table.PrimaryKey("PK_Orders", x => x.OrderId);
                     table.ForeignKey(
-                        name: "FK_Order_Merch_MerchandiseMerchId",
+                        name: "FK_Orders_Merch_MerchandiseMerchId",
                         column: x => x.MerchandiseMerchId,
                         principalTable: "Merch",
                         principalColumn: "MerchId");
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CategoryMerchandise_MerchId",
-                table: "CategoryMerchandise",
-                column: "MerchId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Merch_UserId",
@@ -105,21 +114,34 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_MerchandiseMerchId",
-                table: "Order",
+                name: "IX_MerchCategories_CategoryId",
+                table: "MerchCategories",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MerchCategories_MerchId",
+                table: "MerchCategories",
+                column: "MerchId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_MerchandiseMerchId",
+                table: "Orders",
                 column: "MerchandiseMerchId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CategoryMerchandise");
+                name: "MerchCategories");
 
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Category");
+                name: "Payments");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Merch");

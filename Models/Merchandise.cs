@@ -13,7 +13,7 @@ namespace PersonalProjectPCCapstone2023.Models
         [Required(ErrorMessage = "Merch Name is required.")]
         public string MerchName { get; set;}
 
-        public string MerchSize { get; set; }
+        public string? MerchSize {  get; set;}
 
         [Required(ErrorMessage = "Merch Price is required.")]
         public Decimal MerchPrice { get; set; } = 0.0m;
@@ -22,6 +22,8 @@ namespace PersonalProjectPCCapstone2023.Models
         public IList<Category>? Categories { get; set; } = new List<Category>();
 
         public IList<Order>? Orders { get; set; } = new List<Order>();
+
+        public IList<MerchCategory>? MerchCategories { get; set; } = new List<MerchCategory>();
 
         public string? UserId { get; set; }
 

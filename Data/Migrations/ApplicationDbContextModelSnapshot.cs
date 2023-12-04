@@ -265,7 +265,6 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("MerchSize")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
@@ -276,15 +275,6 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Merch");
-
-                    b.HasData(
-                        new
-                        {
-                            MerchId = 1,
-                            MerchName = "Test",
-                            MerchPrice = 25.0m,
-                            MerchSize = "Medium"
-                        });
                 });
 
             modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.MerchCategory", b =>
@@ -292,13 +282,10 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MerchandiseMerchId")
-                        .HasColumnType("int");
-
                     b.Property<int>("MerchId")
                         .HasColumnType("int");
 
-                    b.HasKey("CategoryId", "MerchandiseMerchId");
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("MerchId");
 
@@ -336,6 +323,17 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentId"), 1L, 1);
+
+                    b.Property<string>("ExpDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PaymentNum")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PaymentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PaymentId");
 

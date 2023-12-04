@@ -12,8 +12,8 @@ using PersonalProjectPCCapstone2023.Data;
 namespace PersonalProjectPCCapstone2023.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231113171740_Merch")]
-    partial class Merch
+    [Migration("20231204023011_newMerchUpdate")]
+    partial class newMerchUpdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,21 +23,6 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("CategoryMerchandise", b =>
-                {
-                    b.Property<int>("CategoriesCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MerchId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoriesCategoryId", "MerchId");
-
-                    b.HasIndex("MerchId");
-
-                    b.ToTable("CategoryMerchandise");
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -263,7 +248,7 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.Merchandise", b =>
@@ -282,7 +267,6 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("MerchSize")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
@@ -293,6 +277,21 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Merch");
+                });
+
+            modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.MerchCategory", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MerchId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("MerchId");
+
+                    b.ToTable("MerchCategories");
                 });
 
             modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.Order", b =>
@@ -316,7 +315,31 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
 
                     b.HasIndex("MerchandiseMerchId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.Payment", b =>
+                {
+                    b.Property<int>("PaymentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentId"), 1L, 1);
+
+                    b.Property<string>("ExpDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PaymentNum")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PaymentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PaymentId");
+
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.User", b =>
@@ -324,21 +347,6 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.HasDiscriminator().HasValue("User");
-                });
-
-            modelBuilder.Entity("CategoryMerchandise", b =>
-                {
-                    b.HasOne("PersonalProjectPCCapstone2023.Models.Category", null)
-                        .WithMany()
-                        .HasForeignKey("CategoriesCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PersonalProjectPCCapstone2023.Models.Merchandise", null)
-                        .WithMany()
-                        .HasForeignKey("MerchId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -399,6 +407,25 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.MerchCategory", b =>
+                {
+                    b.HasOne("PersonalProjectPCCapstone2023.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PersonalProjectPCCapstone2023.Models.Merchandise", "Merchandise")
+                        .WithMany()
+                        .HasForeignKey("MerchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Merchandise");
                 });
 
             modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.Order", b =>

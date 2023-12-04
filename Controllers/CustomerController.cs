@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PersonalProjectPCCapstone2023.Data;
 using PersonalProjectPCCapstone2023.Models;
+using System.Security.Claims;
+
 
 namespace PersonalProjectPCCapstone2023.Controllers
 {
@@ -16,10 +19,24 @@ namespace PersonalProjectPCCapstone2023.Controllers
             _context = context;
         }
 
+        [HttpGet]
         public IActionResult MerchCatalog()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            return View();
+            IList<Merchandise> merch = _context.Merch.Include(m => m.MerchName)
+                .Include(m => m.MerchPrice)
+                .Include(m => m.MerchCategories).ThenInclude(m => m.Category)
+                .Where(m => m.UserId == null)
+                .ToList();
+
+            IList<Merchandise> userMerch = _context.Merch.Include(m => m.MerchName)
+                .Include(m => m.MerchPrice)
+                .Include(m => m.MerchCategories).ThenInclude(m => m.Category)
+                .Where(m => m.UserId == userId)
+                .ToList();
+
+            return View(merch);
         }
 
         public IActionResult Account()

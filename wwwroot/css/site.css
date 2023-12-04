@@ -42,6 +42,10 @@ h2 {
     color: darkgray;
 }
 
+img {
+    border: none;
+}
+
 /*
 hr {
     border: none;
@@ -54,13 +58,9 @@ ul {
     list-style: none;
     margin: 0;
     padding: 0;
-}
+}*/
 
-img {
-    border: none;
-}
-
-#menu {
+/*#menu {
     width: 200px;
     margin: 10px;
 }

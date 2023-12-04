@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Packaging;
 using PersonalProjectPCCapstone2023.Data;
 using PersonalProjectPCCapstone2023.Models;
 using System.Security.Claims;
@@ -36,6 +37,7 @@ namespace PersonalProjectPCCapstone2023.Controllers
                 .Where(m => m.UserId == userId)
                 .ToList();
 
+            merch.AddRange(userMerch);
             return View(merch);
         }
 

@@ -4,7 +4,7 @@
 
 namespace PersonalProjectPCCapstone2023.Data.Migrations
 {
-    public partial class newMerchUpdate : Migration
+    public partial class MerchChangesjustworkfortheloveof : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,11 +69,13 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                 name: "MerchCategories",
                 columns: table => new
                 {
-                    MerchId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    MerchandiseMerchId = table.Column<int>(type: "int", nullable: false),
+                    MerchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_MerchCategories", x => new { x.CategoryId, x.MerchandiseMerchId });
                     table.ForeignKey(
                         name: "FK_MerchCategories_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -112,11 +114,6 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                 name: "IX_Merch_UserId",
                 table: "Merch",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MerchCategories_CategoryId",
-                table: "MerchCategories",
-                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MerchCategories_MerchId",

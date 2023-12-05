@@ -17,7 +17,7 @@ namespace PersonalProjectPCCapstone2023
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
@@ -56,7 +56,7 @@ namespace PersonalProjectPCCapstone2023
             {
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-                var roles = new[] { "Admin", "Customer" };
+                var roles = new[] { "Admin", "Owner" };
 
                 foreach (var role in roles)
                 {
@@ -87,26 +87,26 @@ namespace PersonalProjectPCCapstone2023
                 
             }
 
-            //using (var scope = app.Services.CreateScope())
-            //{
-            //    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            using (var scope = app.Services.CreateScope())
+            {
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-            //    string email = "customer@customer.com";
-            //    string password = "Thepassword1!";
+                string email = "owner@owner.com";
+                string password = "Thepassword1!";
 
-            //    if (await userManager.FindByEmailAsync(email) == null)
-            //    {
-            //        var user = new IdentityUser();
-            //        user.UserName = email;
-            //        user.Email = email;
+                if (await userManager.FindByEmailAsync(email) == null)
+                {
+                    var user = new IdentityUser();
+                    user.UserName = email;
+                    user.Email = email;
 
-            //        await userManager.CreateAsync(user, password);
+                    await userManager.CreateAsync(user, password);
 
-            //        await userManager.AddToRoleAsync(user, "Customer");
+                    await userManager.AddToRoleAsync(user, "Owner");
 
-            //    }
+                }
 
-            //}
+            }
 
 
             app.Run();

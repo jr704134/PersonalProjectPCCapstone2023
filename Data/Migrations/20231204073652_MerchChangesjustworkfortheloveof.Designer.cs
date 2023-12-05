@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonalProjectPCCapstone2023.Data;
 
@@ -11,9 +12,10 @@ using PersonalProjectPCCapstone2023.Data;
 namespace PersonalProjectPCCapstone2023.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231204073652_MerchChangesjustworkfortheloveof")]
+    partial class MerchChangesjustworkfortheloveof
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -275,20 +277,6 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Merch");
-
-                    b.HasData(
-                        new
-                        {
-                            MerchId = 1,
-                            MerchName = "Test",
-                            MerchPrice = 25.0m
-                        },
-                        new
-                        {
-                            MerchId = 2,
-                            MerchName = "Test2",
-                            MerchPrice = 35.0m
-                        });
                 });
 
             modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.MerchCategory", b =>

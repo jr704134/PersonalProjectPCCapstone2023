@@ -25,27 +25,19 @@ namespace PersonalProjectPCCapstone2023.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            IList<Merchandise> merch = _context.Merch.Include(m => m.MerchName)
-                .Include(m => m.MerchPrice)
-                .Include(m => m.MerchCategories).ThenInclude(m => m.Category)
+            IList<Merchandise> merch = _context.Merch.Include(m => m.MerchCategories)
+                .ThenInclude(m => m.Category)
                 .Where(m => m.UserId == null)
                 .ToList();
 
-            IList<Merchandise> userMerch = _context.Merch.Include(m => m.MerchName)
-                .Include(m => m.MerchPrice)
-                .Include(m => m.MerchCategories).ThenInclude(m => m.Category)
-                .Where(m => m.UserId == userId)
-                .ToList();
+            IList<Merchandise> userMerch = _context.Merch.Include(m => m.MerchCategories)
+                 .ThenInclude(m => m.Category)
+                 .Where(m => m.UserId == userId)
+                 .ToList();
 
             merch.AddRange(userMerch);
             return View(merch);
         }
-
-        public IActionResult Account()
-        {
-            return View();
-        }
-
 
         public IActionResult ViewItem()
         {

@@ -13,6 +13,8 @@ namespace PersonalProjectPCCapstone2023.Data
         {
         }
 
+        public DbSet<User> RoleUsers { get; set; }
+
         public DbSet<Merchandise> Merch { get; set; }
 
         public DbSet<Order> Orders { get; set; }
@@ -20,8 +22,6 @@ namespace PersonalProjectPCCapstone2023.Data
         public DbSet<Payment> Payments { get; set; }
 
         public DbSet<Category> Categories { get; set; }
-
-        public DbSet<User> RoleUsers { get; set; }
 
         public DbSet<MerchCategory> MerchCategories { get; set; }
 
@@ -32,16 +32,20 @@ namespace PersonalProjectPCCapstone2023.Data
                 .HasMany(e => e.Categories)
                 .WithMany(e => e.Merch)
                 .UsingEntity<MerchCategory>();
-            modelBuilder.Entity<MerchCategory>()
-                .HasNoKey();
-            //modelBuilder.Entity<Merchandise>().HasData(
-                //new Merchandise
-                //{
-                //    MerchId = 1,
-                //    MerchName = "Test",
-                //    MerchPrice = 25.0m
-                //}
-            //);
+            modelBuilder.Entity<Merchandise>().HasData(
+            new Merchandise
+            {
+                MerchId = 1,
+                MerchName = "Test",
+                MerchPrice = 25.0m
+            },
+            new Merchandise
+            {
+                MerchId = 2,
+                MerchName = "Test2",
+                MerchPrice = 35.0m
+            }
+            );
         }
     }
 }

@@ -12,8 +12,8 @@ using PersonalProjectPCCapstone2023.Data;
 namespace PersonalProjectPCCapstone2023.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231204023011_newMerchUpdate")]
-    partial class newMerchUpdate
+    [Migration("20231204080253_MerchSeeding")]
+    partial class MerchSeeding
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -277,6 +277,20 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Merch");
+
+                    b.HasData(
+                        new
+                        {
+                            MerchId = 1,
+                            MerchName = "Test",
+                            MerchPrice = 25.0m
+                        },
+                        new
+                        {
+                            MerchId = 2,
+                            MerchName = "Test2",
+                            MerchPrice = 35.0m
+                        });
                 });
 
             modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.MerchCategory", b =>
@@ -284,10 +298,13 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MerchandiseMerchId")
+                        .HasColumnType("int");
+
                     b.Property<int>("MerchId")
                         .HasColumnType("int");
 
-                    b.HasIndex("CategoryId");
+                    b.HasKey("CategoryId", "MerchandiseMerchId");
 
                     b.HasIndex("MerchId");
 
@@ -418,7 +435,7 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("PersonalProjectPCCapstone2023.Models.Merchandise", "Merchandise")
-                        .WithMany()
+                        .WithMany("MerchCategories")
                         .HasForeignKey("MerchId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -437,6 +454,8 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
 
             modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.Merchandise", b =>
                 {
+                    b.Navigation("MerchCategories");
+
                     b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618

@@ -21,9 +21,9 @@ namespace PersonalProjectPCCapstone2023.Models
         [Required(ErrorMessage = "Merch Category is required.")]
         public IList<Category>? Categories { get; set; } = new List<Category>();
 
-        public IList<Order>? Orders { get; set; } = new List<Order>();
-
         public IList<MerchCategory>? MerchCategories { get; set; } = new List<MerchCategory>();
+
+        public IList<Order>? Orders { get; set; } = new List<Order>();
 
         public string? UserId { get; set; }
 

@@ -16,7 +16,7 @@ namespace PersonalProjectPCCapstone2023.Models
         public string? MerchSize {  get; set;}
 
         [Required(ErrorMessage = "Merch Price is required.")]
-        public Decimal MerchPrice { get; set; } = 0.0m;
+        public decimal MerchPrice { get; set; } = 0.0m;
 
         [Required(ErrorMessage = "Merch Category is required.")]
         public IList<Category>? Categories { get; set; } = new List<Category>();

@@ -30,12 +30,6 @@ namespace PersonalProjectPCCapstone2023.Controllers
                 .Where(m => m.UserId == null)
                 .ToList();
 
-            IList<Merchandise> userMerch = _context.Merch.Include(m => m.MerchCategories)
-                 .ThenInclude(m => m.Category)
-                 .Where(m => m.UserId == userId)
-                 .ToList();
-
-            merch.AddRange(userMerch);
             return View(merch);
         }
 

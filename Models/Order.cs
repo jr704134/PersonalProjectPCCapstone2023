@@ -7,7 +7,6 @@ namespace PersonalProjectPCCapstone2023.Models
         [Key]
         public int OrderId { get; set; } //This is the primary key
 
-        [Required(ErrorMessage = "Please Enter A CustomerId")]
         public int CustomerId { get; set; }
 
         public OrderStatus OrderStatus { get; set; }

@@ -57,7 +57,7 @@ namespace PersonalProjectPCCapstone2023
             {
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-                var roles = new[] { "Admin", "Owner" };
+                var roles = new[] { "Admin" };
 
                 foreach (var role in roles)
                 {
@@ -93,7 +93,7 @@ namespace PersonalProjectPCCapstone2023
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
                 string email = "owner@owner.com";
-                string password = "Wordpass01!";
+                string password = "Thepassword1!";
 
                 if (await userManager.FindByEmailAsync(email) == null)
                 {

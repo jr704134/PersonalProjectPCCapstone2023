@@ -28,7 +28,7 @@
             {
                 @foreach (User user in Model.Users)
                 {
-                    if (user.UserRoles.Contains("Admin"))
+                    if (user.RoleUsers.Contains("Admin"))
                     {
                         <tr>
                             <td>@user.Email</td>

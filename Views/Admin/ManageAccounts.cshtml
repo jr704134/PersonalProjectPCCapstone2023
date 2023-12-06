@@ -11,24 +11,29 @@
         <h1>Hello Mr. Admin</h1>
     </div>
 
-    <h2 class="mb-3">Manage Accounts</h2>
-<h5 class="mt-4"><a asp-action="AddAdmin">Add an Admin</a></h5>
-    @* 
-    <table class="table table-bordered table-sm">
+    @if (User.IsInRole("Owner"))
+    {
+        <h2 class="mb-3">Manage Accounts</h2>
+        <h5 class="mt-4"><a asp-action="AddAdmin">Add an Admin</a></h5>
+        @*
+    <table>
         <thead>
-            <tr><th>Email</th><th>Delete</th></tr>
+            <tr>
+            <th>Email</th>
+            <th>Delete</th>
+            </tr>
         </thead>
         <tbody>
             @if (Model.Users.Count() != 0)
             {
                 @foreach (User user in Model.Users)
                 {
-                    if (user.RoleNames.Contains("Admin"))
+                    if (user.UserRoles.Contains("Admin"))
                     {
                         <tr>
                             <td>@user.Email</td>
                             <td>
-                                <form method="post" asp-action="DeleteAdmin" asp-route-userId="@user.Id">
+                                <form method="post" asp-controller="Admin" asp-action="DeleteAdmin" asp-route-userId="@user.Id">
                                     <button type="submit" class="btn btn-primary">Delete Admin</button>
                                 </form>
                             </td>
@@ -38,6 +43,7 @@
             }
         </tbody>
     </table> *@
+    }
 }
 else
 {

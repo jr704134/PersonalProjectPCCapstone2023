@@ -84,7 +84,7 @@ ul {
 }
 
 .navMenu {
-    position: absolute;
+    position: fixed;
     left: 50px;
 }
 

@@ -93,7 +93,7 @@ namespace PersonalProjectPCCapstone2023
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
                 string email = "owner@owner.com";
-                string password = "Worpass01!";
+                string password = "Wordpass01!";
 
                 if (await userManager.FindByEmailAsync(email) == null)
                 {

@@ -4,17 +4,19 @@
 }
 @* I used this to help me make a three column foreach loop
 https://stackoverflow.com/questions/55673123/how-we-can-divide-row-in-3-columns-in-foreach-loop
+And I used this to help me display different images for each item
 *@
 
 
 <div class="text-center">
     <h1>Apparel</h1>
+    <br />
 </div>
 <div class="container">
     <div class="row">
         @foreach (var m in @Model)
         {
-            <div class="col-md-offset-2 col-md-6 col-lg-3">
+            <div class="d-block mx-auto col-md-6 col-lg-3">
                 <a asp-controller="Customer" asp-action="ViewItem" class="btn btn-primary" asp-route-id="@m.MerchId">
                     <img class="imgStyle" src="" />
                     <p>

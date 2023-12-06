@@ -1,19 +1,21 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
-
 @{
     ViewData["Title"] = "Manage Accounts";
 }
 @*Other accounts will be seen here*@
 
-@if (User.IsInRole("Admin"))
+@if (User.IsInRole("Owner") || User.IsInRole("Admin"))
 {
   <div class="text-center">
       <h1>Hello Mr. Admin</h1>
     </div>
-} else
+
+    <h2 class="mb-3">Manage Accounts</h2>
+
+
+}
+else
 {
     <h1>You shouldn't be here :)</h1>
 }

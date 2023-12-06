@@ -8,6 +8,6 @@ namespace PersonalProjectPCCapstone2023.Models
         [NotMapped]
         public IList<string>? RoleNames { get; set; }
 
-        //public IList<Merchandise>? Merch { get; set; }
+        public IList<Merchandise>? Merch { get; set; }
     }
 }

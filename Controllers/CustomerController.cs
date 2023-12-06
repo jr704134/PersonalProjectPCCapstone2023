@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Packaging;
@@ -20,10 +21,11 @@ namespace PersonalProjectPCCapstone2023.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult MerchCatalog()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             IList<Merchandise> merch = _context.Merch.Include(m => m.MerchCategories)
                 .ThenInclude(m => m.Category)
@@ -33,8 +35,12 @@ namespace PersonalProjectPCCapstone2023.Controllers
             return View(merch);
         }
 
+        [HttpGet]
         public IActionResult ViewItem()
         {
+            //Merchandise? merch = _context.Merch.Include(m => m.MerchCategories)
+            //    .ThenInclude(m => m.Category)
+            //    .Where(m => m.MerchId == Id).FirstOrDefault();
 
             return View();
         }

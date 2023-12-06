@@ -2,8 +2,6 @@
 {
     public class CategoryIList
     {
-        public Category Category { get; set; }
-        
-        public bool IsSelected { get; set; }
+        public Category Category { get; set; } = new Category();
     }
 }

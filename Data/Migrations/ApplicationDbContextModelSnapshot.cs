@@ -246,7 +246,7 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -312,7 +312,7 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Merch");
+                    b.ToTable("Merch", (string)null);
 
                     b.HasData(
                         new
@@ -350,7 +350,7 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
 
                     b.HasIndex("MerchId");
 
-                    b.ToTable("MerchCategories");
+                    b.ToTable("MerchCategories", (string)null);
                 });
 
             modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.Order", b =>
@@ -374,7 +374,7 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
 
                     b.HasIndex("MerchandiseMerchId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.Payment", b =>
@@ -405,7 +405,7 @@ namespace PersonalProjectPCCapstone2023.Data.Migrations
 
                     b.HasKey("PaymentId");
 
-                    b.ToTable("Payments");
+                    b.ToTable("Payments", (string)null);
                 });
 
             modelBuilder.Entity("PersonalProjectPCCapstone2023.Models.User", b =>

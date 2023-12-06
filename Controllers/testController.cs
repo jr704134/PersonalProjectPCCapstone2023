@@ -1,10 +1,23 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PersonalProjectPCCapstone2023.Data;
+using PersonalProjectPCCapstone2023.Models;
 
 namespace PersonalProjectPCCapstone2023.Controllers
 {
     public class testController : Controller
     {
+        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly ApplicationDbContext _context;
+
+        public testController(RoleManager<IdentityRole> roleManager, ApplicationDbContext context)
+        {
+            this.roleManager = roleManager;
+            _context = context;
+        }
+
         // GET: testController
         public ActionResult Index()
         {
@@ -79,5 +92,15 @@ namespace PersonalProjectPCCapstone2023.Controllers
                 return View();
             }
         }
+
+        //[HttpGet]
+        //public IActionResult testViewItem(int Id)
+        //{
+        //    Merchandise? merch = _context.Merch.Include(m => m.MerchCategories)
+        //        .ThenInclude(m => m.Category)
+        //        .Where(m => m.MerchId == Id).FirstOrDefault() ?? new Merchandise();
+
+        //    return View(Id);
+        //}
     }
 }

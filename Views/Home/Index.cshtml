@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<SlideshowImage>
+@{
     ViewData["Title"] = "Home";
 }
 @*I used this website to help me make an animated slideshow
@@ -6,6 +7,17 @@
 *@
 
 <div class="text-center">
-    <h1 class="display-4">AFBG Merch</h1>
-
+    <h1 class="display-4 mainpage">AFBG Merch</h1>
+</div>
+<div class="container">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000" data-pause="false">
+        <div class="carousel-inner">
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                <div class="carousel-item @(i == 0 ? "active" : "")">
+                    <img class="d-block mx-auto" src="@Model[i].ImageUrl" alt="@Model[i].AltText" style="width:40%; height:40%;">
+                </div>
+            }
+        </div>
+    </div>
 </div>

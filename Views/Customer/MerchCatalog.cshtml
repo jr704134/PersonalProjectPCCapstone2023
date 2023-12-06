@@ -10,11 +10,11 @@ https://stackoverflow.com/questions/55673123/how-we-can-divide-row-in-3-columns-
 <div class="text-center">
     <h1>Apparel</h1>
 </div>
-<div class="">
+<div class="container">
     <div class="row">
         @foreach (var m in @Model)
         {
-            <div id="container">
+            <div class="col-md-offset-2 col-md-6 col-lg-3">
                 <a asp-controller="Customer" asp-action="ViewItem" class="btn btn-primary" asp-route-id="@m.MerchId">
                     <img class="imgStyle" src="" />
                     <p>

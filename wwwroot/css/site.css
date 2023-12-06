@@ -13,6 +13,10 @@ html {
     min-height: 100%;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
     margin-bottom: 60px;
 }
@@ -48,23 +52,29 @@ img {
     width: 56px;
 }
 
+.imgStyle {
+    border: none;
+    height: 100px;
+    width: 100px;
+}
+
 p {
     font-size: 15px;
     font-family: Lato;
 }
 
 #container {
-    grid-template-columns: 100px 50px 100px;
-    grid-template-rows: 80px auto 80px;
-    column-gap: 10px;
-    row-gap: 15px;
+    grid-template-columns: 200px 100px 200px;
+    grid-template-rows: 100px auto 100px;
+    column-gap: 20px;
+    row-gap: 20px;
 }
 
 hr {
     border: none;
     border-top: 1px solid #CCCCCC;
     height: 1px;
-    margin-bottom: 20px;
+    margin-bottom: 1px;
 }
 
 ul {
@@ -73,24 +83,30 @@ ul {
     padding: 0;
 }
 
+.navMenu {
+
+}
+
 #menu {
     width: 200px;
     margin: 10px;
+    display: inline-block;
 }
 
     #menu li a {
         height: 32px;
         height: 24px;
         text-decoration: none;
+        color: #4a4a4a;
     }
 
-        #menu li a:link {
-            color: #FFF;
+        #menu ul li a:link {
+            color: #4a4a4a;
             display: block;
             padding: 8px 0 0 10px;
         }
 
-        #menu li a:hover {
-            color: #FFF;
+        #menu ul li a:hover {
+            color: #000;
             padding: 8px 0 0 10px;
         }

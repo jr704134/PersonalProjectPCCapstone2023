@@ -36,18 +36,54 @@ namespace PersonalProjectPCCapstone2023.Controllers
         }
 
         [HttpGet]
-        public IActionResult ViewItem()
+        public IActionResult ViewItem(int? Id)
         {
-            //Merchandise? merch = _context.Merch.Include(m => m.MerchCategories)
-            //    .ThenInclude(m => m.Category)
-            //    .Where(m => m.MerchId == Id).FirstOrDefault();
+            var merch = _context.Merch.Where(m => m.MerchId == Id).FirstOrDefault();
 
-            return View();
+            if (merch == null)
+            { 
+                RedirectToAction("MerchCatalog");
+            }
+
+            return View(merch);
         }
 
         public IActionResult NewArrivals()
         {
             return View();
         }
+
+        public IActionResult TShirtView()
+        {
+            return View();
+        }
+
+        public IActionResult SweaterView()
+        {
+            return View();
+        }
+
+        public IActionResult HatView()
+        {
+            return View();
+        }
+
+        public IActionResult HoodieView()
+        {
+            return View();
+        }
+
+        public IActionResult BeanieView()
+        {
+            return View();
+        }
+
+        public IActionResult OtherView()
+        {
+            return View();
+        }
     }
 }
+
+
+

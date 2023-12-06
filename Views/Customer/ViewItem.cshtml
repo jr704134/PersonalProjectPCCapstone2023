@@ -4,6 +4,16 @@
     ViewData["Title"] = "Item";
 }
 
-<div class="text-black text-center">
-        <h1 class="align-items-lg-start display-4"></h1>
+<div class="text-center">
+        <h1 class="display-5">Item Name:</h1>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MerchName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MerchName)
+        </dd>
+    </dl>
+
 </div>

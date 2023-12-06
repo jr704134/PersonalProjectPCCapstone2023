@@ -2,26 +2,53 @@
 @{
     ViewData["Title"] = "Apparel";
 }
-
 @* I used this to help me make a three column foreach loop
 https://stackoverflow.com/questions/55673123/how-we-can-divide-row-in-3-columns-in-foreach-loop
 *@
 
+
 <div class="text-center">
     <h1>Apparel</h1>
 </div>
-<div id="container">
+<div class="container">
     <div class="row">
         @foreach (var m in @Model)
         {
-            <div class="">
-                    <a asp-controller="Customer" asp-action="ViewItem" class="btn btn-primary" asp-route-id="@m.MerchId">
+            <div class="col-sm-3 col-lg-3">
+                <a asp-controller="Customer" asp-action="ViewItem" class="btn btn-primary" asp-route-id="@m.MerchId">
                     <img class="" src="" />
-                    <p>@m.MerchName
-                    <br/>
-                    $ @m.MerchPrice</p>
-                    </a>
+                    <p>
+                        @m.MerchName
+                        <br />
+                        $ @m.MerchPrice
+                    </p>
+                </a>
             </div>
         }
+
+    </div>
+    <div class="align-content-lg-start">
+        <nav id="menu">
+            <ul>
+                <li>
+                    <a asp-controller="Customer" asp-action="TShirtView">T-Shirts</a>
+                </li>
+                <li>
+                    <a asp-controller="Customer" asp-action="SweaterView">Sweaters</a>
+                </li>
+                <li>
+                    <a asp-controller="Customer" asp-action="HoodieView">Hoodies</a>
+                </li>
+                <li>
+                    <a asp-controller="Customer" asp-action="BeanieView">Beanies</a>
+                </li>
+                <li>
+                    <a asp-controller="Customer" asp-action="HatView">Hats</a>
+                </li>
+                <li>
+                    <a asp-controller="Customer" asp-action="OtherView">Other</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>

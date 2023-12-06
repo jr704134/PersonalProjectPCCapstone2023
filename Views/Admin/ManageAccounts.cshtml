@@ -11,7 +11,7 @@
         <h1>Hello Mr. Admin</h1>
     </div>
 
-    @if (User.IsInRole("Owner"))
+    @if (User.IsInRole("Owner") || User.IsInRole("Admin"))
     {
         <h2 class="mb-3">Manage Accounts</h2>
         <h5 class="mt-4"><a asp-action="AddAdmin">Add an Admin</a></h5>

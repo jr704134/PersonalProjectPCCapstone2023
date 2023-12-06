@@ -25,6 +25,8 @@ namespace PersonalProjectPCCapstone2023.Models
 
         public IList<Order>? Orders { get; set; } = new List<Order>();
 
+        public string? ImagePath { get; set; }
+
         public string? UserId { get; set; }
 
         public User? User { get; set; }

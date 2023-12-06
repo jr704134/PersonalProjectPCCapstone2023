@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Apparel";
 }
-@* I used this to help me make a three column foreach loop
+@* I used this to help me try to make a three column foreach loop
 https://stackoverflow.com/questions/55673123/how-we-can-divide-row-in-3-columns-in-foreach-loop
 And I used this to help me display different images for each 
 https://stackoverflow.com/questions/74160701/how-to-insert-different-images-in-asp-net-mvc-while-using-a-foreachloop-and-a-db
@@ -17,9 +17,9 @@ https://stackoverflow.com/questions/74160701/how-to-insert-different-images-in-a
     <div class="row">
         @foreach (var m in @Model)
         {
-            <div class="d-block mx-auto col-md-6 col-lg-3">
+            <div class="d-block mx-auto col-md-4 col-lg-3">
                 <a asp-controller="Customer" asp-action="ViewItem" class="btn btn-primary" asp-route-id="@m.MerchId">
-                    <img class="imgStyle" src="" />
+                    <img class="imgStyle" src="@Url.Content(m.ImagePath)" alt="@m.MerchName" />
                     <p>
                         @m.MerchName
                         <br />

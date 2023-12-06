@@ -37,37 +37,43 @@ namespace PersonalProjectPCCapstone2023.Data
             {
                 MerchId = 1,
                 MerchName = "T-Shirt",
-                MerchPrice = 25.0m
+                MerchPrice = 25.0m,
+                ImagePath = "/Images/Tshirt.jpg"
             },
             new Merchandise
             {
                 MerchId = 2,
                 MerchName = "Sweater",
-                MerchPrice = 35.0m
+                MerchPrice = 35.0m,
+                ImagePath = "/Images/Sweater.jpg"
             },
             new Merchandise
             {
                 MerchId = 3,
                 MerchName = "Hoodie",
-                MerchPrice = 40.0m
+                MerchPrice = 40.0m,
+                ImagePath = "/Images/Hoodie.jpg"
             },
             new Merchandise
             {
                 MerchId = 4,
                 MerchName = "Hat",
-                MerchPrice = 20.0m
+                MerchPrice = 20.0m,
+                ImagePath = "/Images/Hat.jpg"
             },
             new Merchandise
             {
                 MerchId = 5,
                 MerchName = "Beanie",
-                MerchPrice = 21.0m
+                MerchPrice = 21.0m,
+                ImagePath = "/Images/Beanie.jpg"
             },
             new Merchandise
             {
                 MerchId = 6,
                 MerchName = "Backpack",
-                MerchPrice = 30.0m
+                MerchPrice = 30.0m,
+                ImagePath = "/Images/Other.jpg"
             }
             );
             modelBuilder.Entity<Category>().HasData(

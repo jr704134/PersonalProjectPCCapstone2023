@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PersonalProjectPCCapstone2023.Data;
+using PersonalProjectPCCapstone2023.Models;
 
 namespace PersonalProjectPCCapstone2023
 {

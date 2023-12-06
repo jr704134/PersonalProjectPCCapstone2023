@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
+// tutorial gave me a refresh on viewmodels
+// https://www.youtube.com/watch?v=NfUccG5faBQ
+
+
 namespace PersonalProjectPCCapstone2023.Models
 {
     public class UserViewModel

@@ -57,7 +57,7 @@ namespace PersonalProjectPCCapstone2023
             {
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-                var roles = new[] { "Admin" };
+                var roles = new[] { "Admin", "Owner" };
 
                 foreach (var role in roles)
                 {

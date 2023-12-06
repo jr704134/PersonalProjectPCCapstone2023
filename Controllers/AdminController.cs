@@ -7,7 +7,7 @@ using PersonalProjectPCCapstone2023.Models;
 
 namespace PersonalProjectPCCapstone2023.Controllers
 {
-    [Authorize(Roles = "Owner, Admin" )]
+    [Authorize(Roles = "Admin, Owner")]
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;
